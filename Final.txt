@@ -1,0 +1,243 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cstdlib>
+
+using namespace std;
+
+enum MenuOption { Tienda = 1, AnadirCuenta, VerCuentas, SignIn, SignOut, SalirPrograma };
+enum StoreOption { Compra = 1, Vender, SalirTienda };
+
+struct store_item {
+	string name;
+	int price;
+};
+
+struct login {
+	string user;
+	string pwd;
+};
+
+struct inventory_item {
+	store_item item;
+	int quantity;
+};
+
+
+const vector<store_item> CATALOG = {
+	{ string("Pinceles"), 3 },
+	{ string("Sketchbook"), 17 },
+	{ string("Caballete"), 35 },
+	{ string("Oleos"), 25 },
+	{ string("Canvas"), 4 }
+};
+
+void show_inventory(vector<inventory_item> inv) {
+	for (unsigned int i = 0; i < inv.size(); i++) {
+		cout << i << ". \t(Disponible : " << (inv[i]).quantity << ")" << endl
+			<< "\tNombre: " << (inv[i]).item.name << endl
+			<< "\tPrecio: " << (inv[i]).item.price << endl << endl;
+	}
+}
+
+vector<login> add_account(vector<login> accs) {
+	string username, password;
+
+	cout << "Nombre de usuario deseado: ";
+	cin >> username;
+	cout << "Contrasena deseada: ";
+	cin >> password;
+
+	accs.push_back({ username, password });
+
+	return accs;
+}
+
+void print_accounts(vector<login> accounts) {
+	for (unsigned int c = 0; c < accounts.size(); c++)
+		cout << "Usuario " << c << ": " << accounts[c].user << endl;
+}
+
+StoreOption store_menu() {
+	int op;
+	cout << "\n Bienvenidos al menu de la tienda" << endl
+		<< Compra << ". Comprar" << endl
+		<< Vender << ". Vender" << endl
+		<< SalirTienda << ". Checkout" << endl;
+	cin >> op;
+	return (StoreOption)op;
+};
+
+void store_function() {
+	vector<inventory_item> store;
+	vector<inventory_item> cart;
+
+
+	for (unsigned int i = 0; i < CATALOG.size(); i++) {
+		store.push_back({ CATALOG[i], 2 }); 
+	}
+
+	StoreOption storeop;
+
+	do {
+		
+		storeop = store_menu();
+		unsigned int store_index;
+		unsigned int cart_index;
+		switch (storeop)
+		{
+		case Compra:
+			cout << "(Comprando)" << endl;
+			cout << "Catalogo: " << endl;
+			show_inventory(store);
+
+			cout << endl << "Ingrese el numero correspondiente a la mercancia que desea comprar: ";
+			cin >> store_index;
+
+			if (store[store_index].quantity > 0) {
+				bool cart_has_the_merch = false;
+				for (cart_index = 0; (cart_index < cart.size() && !cart_has_the_merch); cart_index++) {
+					if (cart[cart_index].item.name == store[store_index].item.name) {
+						cart_has_the_merch = true;
+					}
+
+				}
+
+				if (!cart_has_the_merch) {
+					cart.push_back({ store[store_index].item, 1 });
+					store[store_index].quantity--;
+				}
+				else {
+					cart[cart_index].quantity++;
+					store[store_index].quantity--;
+				}
+			}
+			else {
+				cout << "Lo siento, no nos quedan: " << store[store_index].item.name;
+			}
+
+			cout << "Cart: " << endl;
+			show_inventory(cart);
+
+			break;
+		case Vender:
+			cout << "(Vendiendo)" << endl;
+
+			cout << "Cart: " << endl;
+			show_inventory(cart);
+
+			cout << endl << "Ingrese el numero de la mercancia que desea vender: ";
+			cin >> cart_index;
+
+			bool indice_encontrado = false;
+			for (store_index = 0; (store_index < store.size() && !indice_encontrado); store_index++) {
+				if (store[store_index].item.name == cart[cart_index].item.name) {
+					indice_encontrado = true;
+				}
+
+			}
+
+
+			if (cart[cart_index].quantity > 0) {
+				cart[cart_index].quantity--;
+				store[store_index].quantity++;
+
+			}
+			else {
+				cout << "Lo siento, no quedan: " << store[store_index].item.name;
+			}
+
+			cout << "Cart: " << endl;
+			show_inventory(cart);
+
+			break;
+		}
+		system("Pause");
+		system("cls");
+	} while (storeop != SalirTienda);
+
+	cout << "Gracias por su compra. Regrese pronto!" << endl;
+}
+
+MenuOption menu() {
+
+	int op;
+	cout << "\n Bienvenidos al menu principal" << endl
+		<< "Favor seleccinar una opcion: " << endl
+		<< Tienda << ". Entrar a la tienda" << endl
+		<< AnadirCuenta << ". Anadir Cuenta" << endl
+		<< VerCuentas << ". Verificar cuentas" << endl
+		<< SignIn << ". Log In" << endl
+		<< SignOut << ". Log Out" << endl
+		<< SalirPrograma << ". Salir" << endl;
+	cin >> op;
+	return (MenuOption)op;
+}
+
+bool sign_in(vector<login> accs) {
+	string username, password;
+
+	cout << "Nombre de usuario :";
+	cin >> username;
+	cout << "Contrasena: ";
+	cin >> password;
+
+
+	for (unsigned int i = 0; i < accs.size(); i++) {
+		if ((accs[i]).user == username && (accs[i]).pwd == password) {
+			cout << "Logged in as: " << username << endl;
+			return true;
+		}
+	}
+	cout << "Credenciales incorrectos" << endl;
+	return false;
+}
+
+void main_menu(vector<login> accs) {
+	MenuOption menuop;
+	bool signed_in = false;
+	do {
+
+		menuop = menu();
+
+		switch (menuop)
+		{
+		case Tienda:
+			if (signed_in) {
+				store_function();
+			}
+			else {
+				cout << "Favor de entrar a una cuenta (4)" << endl;
+			}
+			break;
+		case AnadirCuenta:
+			accs = add_account(accs);
+			break;
+		case VerCuentas:
+			print_accounts(accs);
+			break;
+		case SignIn:
+			signed_in = sign_in(accs);
+			break;
+		case SignOut:
+			signed_in = false;
+			break;
+		}
+		system("Pause");
+		system("cls");
+	} while (menuop != SalirPrograma);
+}
+
+int main() {
+
+	vector<login> accounts;
+
+	cout << "*****Bienvenidos*****" << endl;
+
+	accounts = add_account(accounts);
+
+	main_menu(accounts);
+
+	system("Pause");
+	return 0; 
+}

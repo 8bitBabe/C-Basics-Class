@@ -1,0 +1,75 @@
+#include<iostream>
+
+using namespace std;
+
+int suma(int x, int y) {
+	return x + y;
+}
+
+int resta(int x, int y) {
+	return x - y;
+}
+
+int mult(int x, int y) {
+	return x * y;
+}
+
+int divi(int x, int y) {
+	return x / y;
+}
+
+int main() {
+
+	int opmat, x, y, opmenu;
+	int total;
+
+	cout << "Entra dos numeros " << endl;
+	cin >> x;
+	cin >> y;
+
+	cout << "Que deseas hacer con estos numeros? Ingrese el numero con la opcion que desea." << endl;
+	cout << "1. Sumar  2. Restar  3. Multiplicar  4. Dividir 5. Volver a escribir numeros 6. Salir" << endl;
+	cin >> opmat;
+
+	if (opmat == 1) {
+		total = suma(x, y);
+		cout << "Tenemos que " << x << " mas " << y << " es " << total << endl;
+	}
+	else if (opmat == 2) {
+		total = resta(x, y);
+		cout << "Tenemos que " << x << " menos " << y << " es " << total << endl;
+	}
+	else if (opmat == 3) {
+		total = mult(x, y);
+		cout << "Tenemos que " << x << " multiplicado entre " << y << " es " << total << endl;
+	}
+	else if (opmat == 4) {
+		total = divi(x, y);
+		cout << "Tenemos que " << x << " dividido entre " << y << " es " << total << endl;
+	}
+	else if (opmat == 5) 
+		return main();
+	else if (opmat == 6)
+		return 0;
+
+	else {
+		cout << "Eso no es una opcion. Intente de nuevo" << endl;
+			return main();
+	}
+
+	cout << "Volver a empezar?" << endl << "1. Si" << endl << "2. No" << endl;
+	cin >> opmenu;
+
+	if (opmenu == 1)
+		return main();
+	else if (opmenu == 2) {
+		cout << "Adios!" << endl;
+		return 0;
+	}
+	else {
+		cout << "Eso no es una opcion valida. Vuelva a intentar." << endl;
+		return main();
+	}
+
+	system("Pause");
+}

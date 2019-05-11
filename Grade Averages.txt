@@ -1,0 +1,51 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+	int nota1 = 0;
+	int nota2 = 0;
+	int nota3 = 0;
+
+	cout << "Escriba la primera nota: " << endl;
+	cin >> nota1;
+	cout << endl;
+
+	cout << "Escriba la segunda nota: " << endl;
+	cin >> nota2;
+	cout << endl;
+
+	cout << "Escriba la tercera nota: " << endl;
+	cin >> nota3;
+	cout << endl;
+
+	int promedio = (nota1 + nota2 + nota3) / 3;
+
+	cout << "El promedio de sus notas es " << promedio << endl;
+
+	if (promedio <= 100 && promedio >= 90) {
+		cout << "Tiene A en la clase. Felicidades." << endl;
+	}
+
+	else if (promedio <= 89 && promedio >= 80) {
+		cout << "Tienes B en la clase. Buen trabajo." << endl;
+	}
+
+	else if (promedio <= 79 && promedio >= 70) {
+		cout << "Tienes C en la clase. Muy bien." << endl;
+	}
+
+	else if (promedio <= 69 && promedio >= 60) {
+		cout << "Tienes D en la clase. Pasas." << endl;
+	}
+
+	else if (promedio <= 59 && promedio >= 0) {
+		cout << "Tienes F en la clase. No pasas." << endl;
+	}
+
+	else
+		cout << "Hubo un error. Por favor intente de nuevo." << endl;
+
+	system("Pause");
+}

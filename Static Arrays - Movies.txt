@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+struct ListaPeli {
+	string titulo;
+	string genero;
+	int year;
+} peliculas[5];
+
+void printpelicula(ListaPeli peliculas);
+
+int main()
+{
+	string outp;
+	int n;
+
+	for (n = 0; n<5; n++)
+	{
+		cout << "Dame el titulo de una pelicula: ";
+			cin >> peliculas[n].titulo;
+		cout << "De que genero es? ";
+			cin >> peliculas[n].genero;
+		cout << "De que anio es? ";
+			cin >> peliculas[n].year;
+	}
+
+	cout << "Estas son tus peliculas: ";
+	for (n = 0; n<5; n++)
+		printpelicula(peliculas[n]);
+	
+	system("Pause");
+}
+
+void printpelicula(ListaPeli peliculas)
+{
+	cout << peliculas.titulo << " " << peliculas.genero << " " << " (" << peliculas.year << ")" << endl;
+}

@@ -1,0 +1,37 @@
+#include<iostream>
+
+using namespace std;
+
+int main() {
+
+	int num1 = 0;
+	int num2 = 0;
+	int num3 = 0;
+
+	cout << "Ingrese tres numeros separado por espacios: ";
+	cin >> num1 >> num2 >> num3;
+
+	if (num1 > num2 && num1 > num3) {
+		if (num2 > num3)
+			cout << "De mayor a menor, tus numeros son: " << num1 << ", " << num2 << " y " << num3 << ". Gracias!" << endl;
+		else
+			cout << "De mayor a menor, tus numeros son: " << num1 << ", " << num3 << " y " << num2 << ". Gracias!" << endl;
+	}
+
+	else if (num2 > num1 && num2 > num3) {
+		if (num1 > num3)
+			cout << "De mayor a menor, tus numeros son: " << num2 << ", " << num1 << " y " << num3 << ". Gracias!" << endl;
+		else
+			cout << "De mayor a menor, tus numeros son: " << num2 << ", " << num3 << " y " << num1 << ". Gracias!" << endl;
+	}
+	else if (num3 > num2 && num3 > num1) {
+		if (num2 > num1)
+			cout << "De mayor a menor, tus numeros son: " << num3 << ", " << num2 << " y " << num1 << ". Gracias!" << endl;
+		else
+			cout << "De mayor a menor, tus numeros son: " << num3 << ", " << num1 << " y " << num2 << ". Gracias!" << endl;
+	}
+	else
+		cout << "Hubo un error. Intente de nuevo." << endl;
+
+	system("Pause");
+}

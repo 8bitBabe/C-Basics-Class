@@ -1,0 +1,238 @@
+#include<iostream>
+
+using namespace std;
+
+int calc();
+int horo();
+int adiv();
+
+//hacer un programa utilizando todo lo aprendido. El programa debe contener un menu, un horoscopo, una calculadora, 
+//y un jego de adivina el numero. cada uno de estos componentes debe esta en funciones diferentes ej int horoscopo();
+
+int main() {
+
+	int opcion;
+
+	cout << "Hola! Que desea hacer?" << endl;
+	cout << "1. Calculadora" << endl << "2. Horoscopo" << endl << "3. Juego de adivinar" << endl << "4. Salir" << endl;
+	cin >> opcion;
+
+	if (opcion == 1)
+		calc();
+	else if (opcion == 2)
+		horo();
+	else if (opcion == 3)
+		adiv();
+	else if (opcion == 4)
+		return 0;
+	else {
+		cout << "Eso no es una respuesta valida. Vuelva a intentar." << endl;
+		return main();
+	}
+
+	system("Pause");
+}
+
+int calc() {
+
+	int x = 0;     
+	int y = 0;
+	int opmat = 0;
+
+	cout << "Ingrese el numero con la opcion que desea utilizar." << endl;
+	cout << "1. Sumar  2. Restar  3. Multiplicar  4. Dividir 5. Menu" << endl;
+	cin >> opmat;
+
+	if (opmat != 5) {
+
+	cout << "Entre dos numeros " << endl;
+	cin >> x;
+	cin >> y;
+
+	if (opmat == 1) {
+
+		int total = x + y;
+		cout << x << " + " << y << " = " << total << endl;
+		return calc();
+	}
+	else if (opmat == 2) {
+
+		int total = x - y;
+		cout << x << " - " << y << " = " << total << endl;
+		return calc();
+	}
+	else if (opmat == 3) {
+
+		int total = x * y;
+		cout << x << " x " << y << " = " << total << endl;;
+		return calc();
+	}
+	else if (opmat == 4) {
+
+		int total = x / y;
+		cout << x << " / " << y << " = " << total << endl;
+		return calc();
+	}
+	else {
+		cout << "Eso no es una opcion. Intente de nuevo" << endl;
+		return calc();
+	}
+	}
+
+	if (opmat == 5)
+		return main();
+
+	return 0;
+}
+
+int horo() {
+
+	int signo = 0; 
+
+	cout << "Cual es tu signo?" << endl;
+	cout << "1. Aries 2. Tauro 3. Geminis 4. Cancer" << endl;
+	cout << "5. Leo 6. Virgo 7. Libra 8. Escorpion" << endl;
+	cout << "9. Sagitario 10. Capricornio 11. Acuario 12. Piscis" << endl;
+	cout << "13. Regresar al menu." << endl;
+
+	cin >> signo;
+
+	if (signo == 1) {
+		cout << "Se fortalece más tu brillo y magnetismo personal. Tienes suerte, salud, belleza y éxitos en estos momentos." << endl;
+		cout << "Tu pareja o enamorado, podría sentir celos de tu condición de vida, de las miradas que atraes de los demás y del tiempo que le dedicas a tu trabajo." << endl;
+		cout << "La vida te premia por todas tus buenas acciones." << endl << endl;
+		return main();
+	}
+
+	else if (signo == 2) {
+		cout << "El Sol te brinda sabiduría. Estás más abierto a seguir los instintos y dictados de tu corazón." << endl;
+		cout << "Se impone que cuides de tu alimentación. Recibes noticias del extranjero muy prometedoras." << endl;
+		cout << "Una mujer de mediana edad te da consejos muy útiles que debes seguir. El amor y las relaciones sentimentales mejoran." << endl << endl;
+		return main();
+	}
+
+	else if (signo == 3) {
+		cout << "Hoy se acentúan tus instintos maternales o protectores. Estarás más preocupado por asuntos familiares." << endl;
+		cout << "Tu sensibilidad aumentará. El Sol, dador de vida, te brinda mucha seguridad en ti mismo." << endl;
+		cout << "Tu fe en lo que eres capaz de hacer se resalta.Un amor del pasado vuelve a ponerte nervioso y ocupa tu mente." << endl << endl;
+		return main();
+	}
+
+	else if (signo == 4) {
+		cout << "Planifica, elabora estrategias que te abran las puertas a mejores resultados económicos. " << endl;
+		cout << "A los desempleados, ésta es la oportunidad para tocar las puertas para trabajar en lo que les fascina." << endl;
+		cout << "Hoy te identificas más con las necesidades de tus hijos o gente joven." << endl << endl;
+		return main();
+	}
+
+	else if (signo == 5) {
+		cout << "Estás en un periodo muy prometedor. Tienes a muchos planetas benéficos aspectando toda actividad que realices en hoy." << endl;
+		cout << "El amor se enciende. Ha llegado tu momento de amar sin tabúes, miedos o prejuicios. " << endl;
+		cout << "Te liberas de lo que te estancaba en avanzar hacia tu felicidad." << endl << endl;
+		return main();
+	}
+
+	else if (signo == 6) {
+		cout << "Deseas probar nuevas maneras de multiplicar tu dinero. Tienes dudas en invertir," << endl;
+		cout << "vender o trabajar en un proyecto que no te brinda mucha seguridad financiera." << endl;
+		cout << "El Sol te pone más intuitivo, psíquico y sabrás tomar la mejor decisión." << endl << endl;
+		return main();
+	}
+
+	else if (signo == 7) {
+		cout << "Se impone el ahorro, no vas a gastar en cosas no necesarias.Tu pareja te apoya en todo." << endl;
+		cout << "Hoy te encuentras sensible a críticas, chimes y comentarios sobre tu persona. Es importante que " << endl;
+		cout << "cuides tu imagen física, profesional y también personal. Piensa antes de hablar para evitar malas interpretaciones." << endl << endl;
+		return main();
+	}
+
+	else if (signo == 8) {
+		cout << "Circunstancias de último minuto despiertan tu carácter fuerte y decidido a batallar lo que sea. Cuida tu salud, en especial tus nervios." << endl;
+		cout << "Tu sensibilidad aumentará. El Sol, dador de vida, te brinda mucha seguridad en ti mismo.Hijos, familiares te apoyan y también demandan disciplina y compromiso en lo que hagas." << endl;
+		cout << "Evita personas negativas que te detengan en tu crecimiento personal." << endl << endl;
+		return main();
+	}
+
+	else if (signo == 9) {
+		cout << "Hoy podrían aparecer más invitaciones y amigos a tu vida. Una persona mayor te pone a dudar de la lealtad o amistad de alguien especial para ti. " << endl;
+		cout << "Eres un ser emotivo, cuídate de no dejarte llevar por tus pasiones y controla tus reacciones. " << endl;
+		cout << "Hijos, hermanos, se preocupan por ti y por tu bienestar." << endl << endl;
+		return main();
+	}
+
+	else if (signo == 10) {
+		cout << "Fantasmas del pasado, seres que pensaste que ya no formaban parte de tu vida, aparecen otra vez y cambiados. " << endl;
+		cout << "No te cierres a darle y a darte una nueva oportunidad. El destino de cada uno ya está trazado" << endl;
+		cout << "y lo que tiene que pasar, pasará. Ir contra la corriente es atrasar el proceso." << endl << endl;
+		return main();
+	}
+
+	else if (signo == 11) {
+		cout << "Durante este día tu alegría te hace hablar como un loro. Expresas todo con mayor seguridad y confianza." << endl;
+		cout << "El Cosmos te brinda el impulso de salir huyendo de la rutina y del trabajo. Planifica un escape corto," << endl;
+		cout << "pero relajante para fin de mes, junto a una persona especial. Ser feliz depende de ti." << endl << endl;
+		return main();
+	}
+
+	else if (signo == 12) {
+		cout << "Es tu momento para multiplicar ganancias. Aunque tengas el impulso de gastar, sé consciente " << endl;
+		cout << "y evita el derrochar, ahorra. Hoy la Luna te vuelve más sentimental y romántico, mientras el " << endl;
+		cout << "amor está en suspenso, quieto y muy reservado. Debes de hacer algo para hacerlo despertar y arder." << endl << endl;
+		return main();
+	}
+
+	else if (signo == 13)
+		return main();
+
+	else {
+		cout << "Eso no es una opcion valida." << endl;
+		return horo();
+	}
+
+	return 0;
+}
+
+int adiv() {
+	
+	int resp = 13;
+	int opin = 0;
+	int menu = 0;
+
+	cout << "Juguemos! Que numero cree que pienso?" << endl;
+	cin >> opin;
+
+	while (opin != resp) {
+		if (opin > resp) {
+			cout << "Muy alto! Intenta de nuevo." << endl;
+			cin >> opin;
+		}
+
+		else if (opin < resp) {
+			cout << "Muy bajo! Intenta de nuevo." << endl;
+			cin >> opin;
+		}
+
+		else {
+			cout << "Hubo un error. Favor de intentar luego." << endl;
+			return adiv();
+		}
+	}
+
+	if (opin == resp) {
+		cout << "Ese mismo!" << endl << "1. Menu" << endl << "2. Volver a jugar" << endl << "3. Salir" << endl;
+		cin >> menu;
+	}
+		if (menu == 1)
+			main();
+		else if (menu == 2)
+			return adiv();
+		else if (menu == 3)
+			cout << "Adios!" << endl;
+		else {
+			cout << "No es una opcion valida" << endl;
+				return main();
+		}
+		
+	return 0;
+
+}
